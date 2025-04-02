@@ -1,72 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>MFB Upload</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test MFB (Mobile Bet Form)</title>
   <style>
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      padding: 20px;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      padding: 2rem;
+      max-width: 600px;
+      margin: 0 auto;
+      font-size: 18px;
       background-color: #fff;
     }
 
-    h1 {
+    h2 {
+      font-weight: bold;
       font-size: 1.5rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
     }
 
     label {
       display: block;
+      margin-top: 1.5rem;
       font-weight: bold;
-      margin-top: 1rem;
-      font-size: 1.1rem;
     }
 
     input[type="text"],
     input[type="file"] {
       width: 100%;
-      font-size: 1.1rem;
-      padding: 8px;
+      padding: 0.75rem;
       margin-top: 0.5rem;
-      margin-bottom: 1rem;
-      border-radius: 6px;
       border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1rem;
     }
 
     button {
-      background-color: green;
-      color: white;
-      font-size: 1.1rem;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
+      margin-top: 2rem;
       width: 100%;
+      padding: 1rem;
+      background-color: #028a0f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    button:hover {
-      background-color: darkgreen;
-    }
-
-    .container {
-      max-width: 500px;
-      margin: auto;
+    #response {
+      margin-top: 2rem;
+      font-size: 1rem;
+      color: red;
+      word-wrap: break-word;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Submit Bet Screenshot</h1>
-    <form action="https://mfb-backend-s9o3.onrender.com" method="POST" enctype="multipart/form-data">
-      <label for="name">Person's Name:</label>
-      <input type="text" name="name" id="name" required>
+  <h2>Test for this app</h2>
+  <form id="betForm" enctype="multipart/form-data">
+    <label for="name">Person's Name:</label>
+    <input type="text" id="name" name="name" required />
 
-      <label for="screenshot">Bet Screenshot:</label>
-      <input type="file" name="screenshot" id="screenshot" accept="image/*" required>
+    <label for="screenshot">Bet Screenshot:</label>
+    <input type="file" id="screenshot" name="screenshot" accept="image/*" required />
 
-      <button type="submit">Submit to MFB</button>
-    </form>
-  </div>
+    <button type="submit">Submit to MFB</button>
+  </form>
+
+  <div id="response"></div>
+
+  <script>
+    const form = document.getElementById("betForm");
+    const responseBox = document.getElementById("response");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      responseBox.textContent = "Uploading...";
+
+      const formData = new FormData(form);
+
+      try {
+        const res = await fetch("https://mfb-backend-s9o3.onrender.com", {
+          method: "POST",
+          body: formData,
+        });
+
+        const data = await res.json();
+        if (data.message === "Success") {
+          responseBox.style.color = "green";
+          responseBox.textContent = "✅ Bet added for " + formData.get("name");
+        } else {
+          responseBox.style.color = "red";
+          responseBox.textContent = "❌ Error: " + (data.error || "Unknown issue.");
+        }
+      } catch (err) {
+        responseBox.style.color = "red";
+        responseBox.textContent = "❌ Failed to connect.";
+      }
+    });
+  </script>
 </body>
 </html>
