@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <title>Bet Thatttttttt</title>
   <style>
     body {
@@ -39,6 +39,7 @@
       margin-bottom: 15px;
       border-radius: 6px;
       border: 1px solid #ccc;
+      font-size: 16px; /* Prevents zoom on iPhone */
       box-sizing: border-box;
     }
 
@@ -96,8 +97,18 @@
         });
 
         const data = await response.json();
+
         if (response.ok) {
-          result.innerHTML = `<span style="color: green;">✅ Success:</span> ${data.data}`;
+          const regex = /\$?(\d+(?:\.\d{1,2})?)\s*(?:to\s*win|→|=>)\s*\$?(\d+(?:\.\d{1,2})?)/i;
+          const match = data.data.match(regex);
+
+          if (match) {
+            const wager = match[1];
+            const winnings = match[2];
+            result.innerHTML = `🎉 You placed a $${wager} wager to win $${winnings}. Good luck!`;
+          } else {
+            result.innerHTML = `<span style="color: green;">✅ Success:</span> ${data.data}`;
+          }
         } else {
           result.innerHTML = `<span style="color: red;">❌ Error:</span> ${data.error}`;
         }
