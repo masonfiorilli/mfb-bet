@@ -2,22 +2,82 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bet Thatttttttt</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      margin: 0;
+      background-color: #f9f9f9;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="file"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #218838;
+    }
+
+    #result {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <h2>Test for this stupid ass app)</h2>
+  <h2>Submit a Bet</h2>
 
   <form id="betForm">
-    <label for="name">Person's Name:</label><br>
-    <input type="text" id="name" name="name" required><br><br>
+    <label for="name">Person's Name:</label>
+    <input type="text" id="name" name="name" required>
 
-    <label for="screenshot">Bet Screenshot:</label><br>
-    <input type="file" id="screenshot" name="screenshot" accept="image/*" required><br><br>
+    <label for="screenshot">Bet Screenshot:</label>
+    <input type="file" id="screenshot" name="screenshot" accept="image/*" required>
 
-    <button type="submit" style="background-color:green;color:white;padding:10px;">Submit to MFB</button>
+    <button type="submit">Submit to MFB</button>
   </form>
 
-  <p id="result" style="margin-top: 20px;"></p>
+  <p id="result"></p>
 
   <script>
     const form = document.getElementById('betForm');
