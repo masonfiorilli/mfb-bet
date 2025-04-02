@@ -1,104 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Test MFB (Mobile Bet Form)</title>
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-      padding: 2rem;
-      max-width: 600px;
-      margin: 0 auto;
-      font-size: 18px;
-      background-color: #fff;
-    }
-
-    h2 {
-      font-weight: bold;
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
-    }
-
-    label {
-      display: block;
-      margin-top: 1.5rem;
-      font-weight: bold;
-    }
-
-    input[type="text"],
-    input[type="file"] {
-      width: 100%;
-      padding: 0.75rem;
-      margin-top: 0.5rem;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 1rem;
-    }
-
-    button {
-      margin-top: 2rem;
-      width: 100%;
-      padding: 1rem;
-      background-color: #028a0f;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    #response {
-      margin-top: 2rem;
-      font-size: 1rem;
-      color: red;
-      word-wrap: break-word;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Bet Thatttttttt</title>
 </head>
 <body>
-  <h2>Test for this app</h2>
-  <form id="betForm" enctype="multipart/form-data">
-    <label for="name">Person's Name:</label>
-    <input type="text" id="name" name="name" required />
+  <h2>Test for this stupid ass app)</h2>
 
-    <label for="screenshot">Bet Screenshot:</label>
-    <input type="file" id="screenshot" name="screenshot" accept="image/*" required />
+  <form id="betForm">
+    <label for="name">Person's Name:</label><br>
+    <input type="text" id="name" name="name" required><br><br>
 
-    <button type="submit">Submit to MFB</button>
+    <label for="screenshot">Bet Screenshot:</label><br>
+    <input type="file" id="screenshot" name="screenshot" accept="image/*" required><br><br>
+
+    <button type="submit" style="background-color:green;color:white;padding:10px;">Submit to MFB</button>
   </form>
 
-  <div id="response"></div>
+  <p id="result" style="margin-top: 20px;"></p>
 
   <script>
-    const form = document.getElementById("betForm");
-    const responseBox = document.getElementById("response");
+    const form = document.getElementById('betForm');
+    const result = document.getElementById('result');
 
-    form.addEventListener("submit", async (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      responseBox.textContent = "Uploading...";
 
       const formData = new FormData(form);
+      result.textContent = 'Submitting...';
 
       try {
-        const res = await fetch("https://mfb-backend-s9o3.onrender.com", {
+        const response = await fetch("https://mfb-backend-s9o3.onrender.com/upload", {
           method: "POST",
-          body: formData,
+          body: formData
         });
 
-        const data = await res.json();
-        if (data.message === "Success") {
-          responseBox.style.color = "green";
-          responseBox.textContent = "✅ Bet added for " + formData.get("name");
+        const data = await response.json();
+        if (response.ok) {
+          result.innerHTML = `<span style="color: green;">✅ Success:</span> ${data.data}`;
         } else {
-          responseBox.style.color = "red";
-          responseBox.textContent = "❌ Error: " + (data.error || "Unknown issue.");
+          result.innerHTML = `<span style="color: red;">❌ Error:</span> ${data.error}`;
         }
       } catch (err) {
-        responseBox.style.color = "red";
-        responseBox.textContent = "❌ Failed to connect.";
+        result.innerHTML = `<span style="color: red;">❌ Could not connect to backend.</span>`;
       }
     });
   </script>
