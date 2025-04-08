@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>MFB App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     function showTab(tab) {
@@ -11,20 +11,20 @@
       document.getElementById(tab).classList.remove('hidden');
       document.getElementById('sidebar').classList.add('hidden');
     }
+
     function toggleSidebar() {
-      document.getElementById('sidebar').classList.toggle('hidden');
+      const sidebar = document.getElementById('sidebar');
+      sidebar.classList.toggle('hidden');
     }
   </script>
 </head>
-<body class="flex flex-col sm:flex-row bg-gray-100 min-h-screen text-gray-800">
-  <!-- Toggle Button (Mobile) -->
-  <div class="sm:hidden p-4 bg-indigo-600 text-white flex justify-between items-center">
-    <h1 class="font-bold text-lg">MFB</h1>
-    <button onclick="toggleSidebar()" class="px-3 py-1 bg-white text-indigo-600 rounded">☰ Menu</button>
-  </div>
+<body class="flex flex-col md:flex-row bg-gray-100 h-screen text-gray-800">
+
+  <!-- Sidebar toggle for mobile -->
+  <button class="md:hidden m-2 text-indigo-600 font-bold" onclick="toggleSidebar()">☰ Menu</button>
 
   <!-- Sidebar -->
-  <aside id="sidebar" class="hidden sm:block w-full sm:w-64 bg-white shadow-xl p-6 space-y-6">
+  <aside id="sidebar" class="hidden md:block w-full md:w-64 bg-white shadow-xl p-6 space-y-6">
     <h2 class="text-xl font-bold">📊 MFB</h2>
     <nav class="space-y-3">
       <button onclick="showTab('tab1')" class="w-full text-left px-3 py-2 rounded-lg bg-indigo-100 hover:bg-indigo-200">1. Upload a Bet Slip</button>
@@ -33,96 +33,114 @@
     </nav>
   </aside>
 
-  <!-- Main Content -->
-  <main class="flex-1 p-4 sm:p-6 overflow-y-auto">
+  <!-- Content -->
+  <main class="flex-1 p-4 overflow-y-auto">
     <!-- Tab 1 -->
     <div id="tab1" class="tab-content">
-      <div class="bg-white p-6 rounded-xl shadow max-w-md mx-auto">
-        <h1 class="text-xl font-bold mb-4">Upload a Bet Slip</h1>
+      <div class="bg-white p-6 rounded-2xl shadow-lg max-w-lg mx-auto">
+        <h1 class="text-2xl font-bold mb-6">Upload a Bet Slip</h1>
         <form id="uploadForm" class="space-y-4">
           <div>
             <label for="name" class="block mb-1 text-sm font-medium">Your Name</label>
-            <input type="text" id="name" name="name" required class="w-full p-2 border rounded bg-blue-50" />
+            <input type="text" id="name" name="name" required class="w-full p-2 border rounded-lg bg-blue-50" />
           </div>
           <div>
             <label for="screenshot" class="block mb-1 text-sm font-medium">Screenshot</label>
-            <input type="file" id="screenshot" name="screenshot" accept="image/*" required class="w-full p-2 border rounded bg-white" />
+            <input type="file" id="screenshot" name="screenshot" accept="image/*" required class="w-full p-2 border rounded-lg bg-white" />
           </div>
-          <button type="submit" class="w-full py-2 bg-indigo-600 text-white rounded font-semibold">Upload</button>
+          <button type="submit" class="w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold">Upload</button>
         </form>
-        <div id="output" class="mt-6 text-sm"></div>
+        <div id="output" class="mt-6 text-sm text-left"></div>
       </div>
     </div>
 
     <!-- Tab 2 -->
     <div id="tab2" class="tab-content hidden">
-      <div class="bg-white p-6 rounded-xl shadow max-w-md mx-auto space-y-4">
-        <h2 class="text-xl font-semibold text-indigo-600">💰 Your Balance</h2>
+      <div class="bg-white p-6 rounded-xl shadow space-y-4 max-w-lg mx-auto">
+        <h2 class="text-xl font-semibold mb-4 text-indigo-600">💰 Your Balance</h2>
         <div>
           <label for="balance-name" class="block text-sm font-medium">Enter Your Name</label>
-          <input type="text" id="balance-name" class="w-full p-2 border rounded bg-blue-50" />
+          <input type="text" id="balance-name" class="w-full p-2 border rounded-lg bg-blue-50" />
         </div>
-        <div id="balance-output" class="hidden space-y-2">
-          <p>Owed / Owe Me: <span id="owed-value" class="text-red-600 font-medium"></span></p>
-          <p>Cashback: <span id="cashback-value" class="text-green-600 font-medium"></span></p>
+        <div id="balance-output" class="mt-6 hidden space-y-4">
+          <p class="text-lg font-medium">Owed / Owe Me: <span id="owed-value" class="text-red-600"></span></p>
+          <p class="text-lg font-medium">Cashback: <span id="cashback-value" class="text-green-600"></span></p>
         </div>
-        <button id="check-balance" class="w-full py-2 bg-indigo-600 text-white rounded font-semibold">Check Balance</button>
+        <button id="check-balance" class="mt-4 w-full py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold">Check Balance</button>
       </div>
     </div>
 
     <!-- Tab 3 -->
     <div id="tab3" class="tab-content hidden">
-      <div class="bg-white p-6 rounded-xl shadow text-center max-w-md mx-auto">
-        <h2 class="text-xl font-semibold">📅 This Week's Bets</h2>
-        <p class="text-gray-500 mt-2">Coming soon...</p>
+      <div class="bg-white p-6 rounded-xl shadow text-center text-gray-500 max-w-lg mx-auto">
+        <h2 class="text-xl font-semibold mb-2">📅 This Week's Bets</h2>
+        <p>Coming soon...</p>
       </div>
     </div>
   </main>
 
-  <!-- Script -->
   <script>
     const form = document.getElementById("uploadForm");
     const output = document.getElementById("output");
 
-    form?.addEventListener("submit", async (e) => {
+    form.addEventListener("submit", async (e) => {
       e.preventDefault();
       output.innerHTML = "<div class='text-gray-500'>⏳ Uploading...</div>";
+
       const formData = new FormData(form);
+
       try {
-        const res = await fetch("https://mfb-backend2.onrender.com/upload", { method: "POST", body: formData });
-        const data = await res.json();
-        if (res.ok) {
-          const r = data.data;
+        const response = await fetch("https://mfb-backend2.onrender.com/upload", {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          const result = data.data;
+
+          const wager = result.markdown?.match(/\*\*Wager:\*\*\s*\$?([\d.]+)/)?.[1] || "N/A";
+          const odds = result.markdown?.match(/\*\*Odds:\*\*\s*([+−\-]?\d+)/)?.[1] || "N/A";
+          const payout = result.markdown?.match(/\*\*Payout:\*\*\s*\$?([\d.]+)/)?.[1] || "N/A";
+
           output.innerHTML = `
             <div class="text-green-600 font-medium mb-2">✅ Upload successful!</div>
-            <div class="bg-gray-50 p-4 rounded border">
-              <p><strong>📅 Timestamp:</strong> ${r.timestamp}</p>
-              <p><strong>🙋 Name:</strong> ${r.name}</p>
-              <p><strong>💸 Wager:</strong> ${r.markdown.match(/\\*\\*Wager:\\*\\* \\$(\\d+(\\.\\d+)?)/)?.[1] || 'N/A'}</p>
-              <p><strong>📈 Odds:</strong> ${r.markdown.match(/\\*\\*Odds:\\*\\* ([+−\\-]?\\d+)/)?.[1] || 'N/A'}</p>
-              <p><strong>💰 Payout:</strong> ${r.markdown.match(/\\*\\*Payout:\\*\\* \\$(\\d+(\\.\\d+)?)/)?.[1] || 'N/A'}</p>
-              ${r.image_link ? `<p><a href='${r.image_link}' target='_blank' class='text-indigo-600 underline mt-2 inline-block'>🔗 View Image</a></p>` : ""}
+            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200 space-y-1">
+              <p>📅 <strong>Timestamp:</strong> ${result.timestamp}</p>
+              <p>🙋 <strong>Name:</strong> ${result.name}</p>
+              <p>💸 <strong>Wager:</strong> ${wager}</p>
+              <p>📈 <strong>Odds:</strong> ${odds}</p>
+              <p>💰 <strong>Payout:</strong> ${payout}</p>
+              ${result.image_link ? `<p><a href="${result.image_link}" target="_blank" class="text-indigo-600 underline mt-2 inline-block">🔗 View Image</a></p>` : ""}
             </div>`;
         } else {
-          output.innerHTML = `<div class="text-red-600 font-medium">❌ Error: ${data.error || 'Unknown error'}</div>`;
+          output.innerHTML = `<div class="text-red-600 font-medium">❌ Error: ${data.error || "Unknown error"}</div>`;
         }
       } catch (err) {
         output.innerHTML = `<div class="text-red-600 font-medium">❌ Request failed: ${err.message}</div>`;
       }
     });
 
-    document.getElementById('check-balance')?.addEventListener('click', async () => {
+    document.getElementById('check-balance').addEventListener('click', async () => {
       const name = document.getElementById('balance-name').value.trim();
-      if (!name) return alert('Please enter your name.');
-      const res = await fetch(`https://mfb-backend2.onrender.com/balance?name=${name}`);
+      
+      if (!name) {
+        alert('Please enter your name.');
+        return;
+      }
+
+      const res = await fetch(`https://mfb-backend2.onrender.com/balance?name=${encodeURIComponent(name)}`);
       const data = await res.json();
-      const out = document.getElementById('balance-output');
-      const owed = document.getElementById('owed-value');
-      const cashback = document.getElementById('cashback-value');
+
+      const balanceOutput = document.getElementById('balance-output');
+      const owedValue = document.getElementById('owed-value');
+      const cashbackValue = document.getElementById('cashback-value');
+
       if (res.ok) {
-        owed.textContent = `$${data.owed_owe_me}`;
-        cashback.textContent = `$${data.cashback}`;
-        out.classList.remove('hidden');
+        owedValue.textContent = `$${data.owed_owe_me}`;
+        cashbackValue.textContent = `$${data.cashback}`;
+        balanceOutput.classList.remove('hidden');
       } else {
         alert(data.error || 'Error fetching balance.');
       }
