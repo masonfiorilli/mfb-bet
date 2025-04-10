@@ -162,13 +162,15 @@
         const owedValue = document.getElementById('owed-value');
         const cashbackValue = document.getElementById('cashback-value');
 
-        if (res.ok) {
+        if (res.ok && data.owed_owe_me !== undefined && data.cashback !== undefined) {
           owedValue.textContent = `$${data.owed_owe_me}`;
           cashbackValue.textContent = `$${data.cashback}`;
           balanceOutput.classList.remove('hidden');
         } else {
+          balanceOutput.classList.add('hidden');
           alert(data.error || 'Error fetching balance.');
         }
+
       });
 
       showTab('tab1');
