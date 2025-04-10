@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="GMT-4" />
   <title>MFB App</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
@@ -20,65 +20,68 @@
   </script>
 </head>
 
-<body class="flex flex-col md:flex-row bg-[#0B0B0D] h-screen text-white">
-  <button class="md:hidden m-2 text-[#3E9BD9] font-bold" onclick="toggleSidebar()">☰ Menu</button>
+<body class="flex flex-col md:flex-row bg-[#0A0A0A] h-screen text-white">
+  <button class="md:hidden m-2 text-[#4DB2E8] font-bold" onclick="toggleSidebar()">☰ Menu</button>
 
-  <aside id="sidebar" class="hidden md:block w-full md:w-64 bg-[#121214] shadow-xl p-6 space-y-6">
+  <aside id="sidebar" class="hidden md:block w-full md:w-64 bg-[#121212] shadow-xl p-6 space-y-6">
     <h2 class="text-xl font-bold">📊 MFB</h2>
     <nav class="space-y-3">
-      <button onclick="showTab('tab1')" class="w-full text-left px-3 py-2 rounded-lg bg-[#2A2A2E] hover:bg-[#3E9BD9]">1. Upload a Bet Slip</button>
-      <button onclick="showTab('tab2')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#2A2A2E]">2. Check Balance</button>
-      <button onclick="showTab('tab3')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#2A2A2E]">3. View This Week's Bets</button>
+      <button onclick="showTab('tab1')" class="w-full text-left px-3 py-2 rounded-lg bg-[#1F1F1F] hover:bg-[#4DB2E8]">1. Upload a Bet Slip</button>
+      <button onclick="showTab('tab2')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#1F1F1F]">2. Check Balance</button>
+      <button onclick="showTab('tab3')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#1F1F1F]">3. View This Week's Bets</button>
     </nav>
   </aside>
 
   <main class="flex-1 p-4 overflow-y-auto">
+    <!-- Tab 1 -->
     <div id="tab1" class="tab-content">
-      <div class="bg-[#1B1B1E] p-6 rounded-2xl shadow-lg max-w-lg mx-auto">
+      <div class="bg-[#121212] p-6 rounded-2xl shadow-lg max-w-lg mx-auto">
         <h1 class="text-2xl font-bold mb-6">Upload a Bet Slip</h1>
         <form id="uploadForm" class="space-y-4">
           <div>
             <label for="name" class="block mb-1 text-sm font-medium">Your Name</label>
-            <input type="text" id="name" name="name" required class="w-full p-2 border border-[#444] rounded-lg bg-[#2A2A2E] text-white" />
+            <input type="text" id="name" name="name" required class="w-full p-2 border border-[#3A3A3A] rounded-lg bg-[#1F1F1F] text-white" />
           </div>
           <div>
             <label for="screenshot" class="block mb-1 text-sm font-medium">Screenshot</label>
-            <input type="file" id="screenshot" name="screenshot" accept="image/*" required class="w-full p-2 border border-[#444] rounded-lg bg-[#2A2A2E] text-white" />
+            <input type="file" id="screenshot" name="screenshot" accept="image/*" required class="w-full p-2 border border-[#3A3A3A] rounded-lg bg-[#1F1F1F] text-white" />
           </div>
           <div>
             <label class="inline-flex items-center space-x-2">
-              <input type="checkbox" name="freeplay" id="freeplay" class="accent-[#3E9BD9] w-4 h-4" />
+              <input type="checkbox" name="freeplay" id="freeplay" class="accent-[#4DB2E8] w-4 h-4" />
               <span class="text-sm font-medium">Use Freeplay</span>
             </label>
           </div>
-          <button type="submit" class="w-full py-2 bg-[#3E9BD9] hover:bg-[#2F84B8] text-white rounded-xl font-semibold">Upload</button>
+          <button type="submit" class="w-full py-2 bg-[#4DB2E8] hover:bg-[#3694C9] text-white rounded-xl font-semibold">Upload</button>
         </form>
         <div id="output" class="mt-6 text-sm text-left"></div>
       </div>
     </div>
 
+    <!-- Tab 2 -->
     <div id="tab2" class="tab-content hidden">
-      <div class="bg-[#1B1B1E] p-6 rounded-xl shadow space-y-4 max-w-lg mx-auto">
-        <h2 class="text-xl font-semibold mb-4 text-[#3E9BD9]">💰 Your Balance</h2>
+      <div class="bg-[#121212] p-6 rounded-xl shadow space-y-4 max-w-lg mx-auto">
+        <h2 class="text-xl font-semibold mb-4 text-[#4DB2E8]">💰 Your Balance</h2>
         <div>
           <label for="balance-name" class="block text-sm font-medium">Enter Your Name</label>
-          <input type="text" id="balance-name" class="w-full p-2 border border-[#444] rounded-lg bg-[#2A2A2E] text-white" />
+          <input type="text" id="balance-name" class="w-full p-2 border border-[#3A3A3A] rounded-lg bg-[#1F1F1F] text-white" />
         </div>
         <div id="balance-output" class="mt-6 hidden space-y-4">
           <p class="text-lg font-medium">Balance: <span id="owed-value" class="text-green-400"></span></p>
           <p class="text-lg font-medium">Free Play: <span id="cashback-value" class="text-green-400"></span></p>
         </div>
-        <button id="check-balance" class="mt-4 w-full py-2 bg-[#3E9BD9] hover:bg-[#2F84B8] text-white rounded-xl font-semibold">Check Balance</button>
+        <button id="check-balance" class="mt-4 w-full py-2 bg-[#4DB2E8] hover:bg-[#3694C9] text-white rounded-xl font-semibold">Check Balance</button>
       </div>
     </div>
 
+    <!-- Tab 3 -->
     <div id="tab3" class="tab-content hidden">
-      <div class="bg-[#1B1B1E] p-6 rounded-xl shadow max-w-2xl mx-auto">
-        <h2 class="text-xl font-semibold mb-4 text-[#3E9BD9]">📅 This Week's Bets</h2>
+      <div class="bg-[#121212] p-6 rounded-xl shadow max-w-2xl mx-auto">
+        <h2 class="text-xl font-semibold mb-4 text-[#4DB2E8]">📅 This Week's Bets</h2>
         <div class="mb-4">
           <label for="weekly-name-input" class="block mb-1 text-sm font-medium">Enter Your Name</label>
-          <input type="text" id="weekly-name-input" class="w-full p-2 border border-[#444] rounded-lg bg-[#2A2A2E] text-white" placeholder="e.g., Mason" />
-          <button onclick="fetchWeeklyBets()" class="mt-2 w-full py-2 bg-[#3E9BD9] hover:bg-[#2F84B8] text-white rounded-xl font-semibold">View Bets</button>
+          <input type="text" id="weekly-name-input" class="w-full p-2 border border-[#3A3A3A] rounded-lg bg-[#1F1F1F] text-white" placeholder="e.g., Mason" />
+          <button onclick="fetchWeeklyBets()" class="mt-2 w-full py-2 bg-[#4DB2E8] hover:bg-[#3694C9] text-white rounded-xl font-semibold">View Bets</button>
         </div>
         <div id="weekly-bets-output" class="space-y-4 mt-6"></div>
       </div>
