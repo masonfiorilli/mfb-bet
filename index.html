@@ -200,14 +200,6 @@
           <p class="text-xs text-indigo-600 mt-1 italic">${method || "Method: Unknown"}</p>
           ${imageLink && imageLink !== "ERROR" ? `<a href="${imageLink}" target="_blank" class="inline-block mt-2 text-indigo-600 underline">📸 View Screenshot</a>` : ""}
         `;
-              if (imageLink && imageLink !== "ERROR") {
-                const checkBtn = document.createElement("button");
-                checkBtn.textContent = "Check Result";
-                checkBtn.className = "mt-3 px-4 py-1 bg-indigo-600 text-white text-sm rounded-lg hover:bg-indigo-700";
-                checkBtn.onclick = () => checkResult(imageLink, markdown);
-                card.appendChild(checkBtn);
-              }
-
 
               container.appendChild(card);
             });
@@ -217,19 +209,6 @@
         } catch (err) {
           container.innerHTML = `<p class="text-red-600 font-medium">❌ Error loading bets: ${err.message}</p>`;
         }
-      }
-      async function checkResult(imageUrl, markdown) {
-        const msg = confirm("Send this bet to GPT to check if it hit?");
-        if (!msg) return;
-
-        const res = await fetch("https://mfb-backend2.onrender.com/check-result", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ image_url: imageUrl, original_markdown: markdown })
-        });
-
-        const data = await res.json();
-        alert(data.result || data.error || "Unknown response.");
       }
 
     </script>
