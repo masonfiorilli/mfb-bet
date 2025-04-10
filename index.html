@@ -112,7 +112,7 @@
 
           output.innerHTML = `
             <div class="text-green-600 font-medium mb-2">✅ Upload successful!</div>
-            <div class="bg-[#0E0E10] p-4 rounded-xl border border-[#333] space-y-1 text-white">
+            <div class="bg-[#1C1C1F] p-4 rounded-xl border border-[#333] space-y-1 text-white">
               <p>📅 <strong>Timestamp:</strong> ${result.timestamp}</p>
               <p>🙋 <strong>Name:</strong> ${result.name}</p>
               <p>💸 <strong>Wager:</strong> ${wager}</p>
@@ -170,7 +170,7 @@
             const resultEmoji = result?.trim().toLowerCase() === "win" ? "✅" : result?.trim().toLowerCase() === "loss" ? "❌" : "";
 
             const card = document.createElement("div");
-            card.className = "border border-[#333] rounded-xl p-4 bg-[#1C1C1F] shadow";
+            card.className = "border border-[#333] rounded-xl p-4 bg-[#0E0E10] shadow";
             card.innerHTML = `
               <div class="flex justify-between">
                 <p class="text-sm text-gray-500">${timestamp}</p>
