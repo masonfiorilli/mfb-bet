@@ -165,7 +165,7 @@
     const owedValue = document.getElementById('owed-value');
     const cashbackValue = document.getElementById('cashback-value');
 
-    if (res.ok && data.owed_owe_me != null && data.cashback != null) {
+    if (data && data.owed_owe_me !== undefined && data.cashback !== undefined) {
       owedValue.textContent = `$${data.owed_owe_me}`;
       cashbackValue.textContent = `$${data.cashback}`;
       balanceOutput.classList.remove('hidden');
@@ -173,6 +173,7 @@
       balanceOutput.classList.add('hidden');
       alert(data.error || 'Error fetching balance.');
     }
+
   } catch (err) {
     alert('Network error. Try again.');
   }
