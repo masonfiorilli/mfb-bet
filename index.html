@@ -188,18 +188,29 @@
 
           if (res.ok && data.bets.length > 0) {
             data.bets.reverse().forEach(row => {
-              const [timestamp, user, markdown, imageLink, method] = row;
+              const [timestamp, user, markdown, imageLink, method, result] = row;
+
+              const resultEmoji = result?.trim().toLowerCase() === "win"
+                ? "✅"
+                : result?.trim().toLowerCase() === "loss"
+                  ? "❌"
+                  : "";
+
 
               const card = document.createElement("div");
               card.className = "border border-gray-200 rounded-xl p-4 bg-gray-50 shadow-sm";
 
               card.innerHTML = `
-          <p class="text-sm text-gray-500">${timestamp}</p>
-          <p class="font-semibold text-gray-800">${user}</p>
-          <div class="text-sm mt-2 whitespace-pre-line">${markdown || "(no bet details)"}</div>
-          <p class="text-xs text-indigo-600 mt-1 italic">${method || "Method: Unknown"}</p>
-          ${imageLink && imageLink !== "ERROR" ? `<a href="${imageLink}" target="_blank" class="inline-block mt-2 text-indigo-600 underline">📸 View Screenshot</a>` : ""}
-        `;
+    <div class="flex justify-between">
+      <p class="text-sm text-gray-500">${timestamp}</p>
+      <span class="text-lg">${resultEmoji}</span>
+    </div>
+    <p class="font-semibold text-gray-800">${user}</p>
+    <div class="text-sm mt-2 whitespace-pre-line">${markdown || "(no bet details)"}</div>
+    <p class="text-xs text-indigo-600 mt-1 italic">${method || "Method: Unknown"}</p>
+    ${imageLink && imageLink !== "ERROR" ? `<a href="${imageLink}" target="_blank" class="inline-block mt-2 text-indigo-600 underline">📸 View Screenshot</a>` : ""}
+  `;
+
 
               container.appendChild(card);
             });
