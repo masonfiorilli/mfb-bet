@@ -26,10 +26,14 @@
   <aside id="sidebar" class="hidden md:block w-full md:w-64 bg-[#121214] shadow-xl p-6 space-y-6">
     <h2 class="text-xl font-bold">📊 MFB</h2>
     <nav class="space-y-3">
-      <button onclick="showTab('tab1')" class="w-full text-left px-3 py-2 rounded-lg bg-[#2B2B30] hover:bg-[#4DB2E8]">1. Upload a Bet Slip</button>
-      <button onclick="showTab('tab2')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#2B2B30]">2. Check Balance</button>
-      <button onclick="showTab('tab3')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#2B2B30]">3. View This Week's Bets</button>
-      <button onclick="showTab('tab4')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#2B2B30]">4. Rules</button>
+      <button onclick="showTab('tab1')" class="w-full text-left px-3 py-2 rounded-lg bg-[#2B2B30] hover:bg-[#4DB2E8]">1.
+        Upload a Bet Slip</button>
+      <button onclick="showTab('tab2')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#2B2B30]">2. Check
+        Balance</button>
+      <button onclick="showTab('tab3')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#2B2B30]">3. View This
+        Week's Bets</button>
+      <button onclick="showTab('tab4')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#2B2B30]">4.
+        Rules</button>
     </nav>
   </aside>
 
@@ -41,11 +45,13 @@
         <form id="uploadForm" class="space-y-4">
           <div>
             <label for="name" class="block mb-1 text-sm font-medium">Your Name</label>
-            <input type="text" id="name" name="name" required class="w-full p-2 border border-[#444] rounded-lg bg-[#2B2B30] text-white" />
+            <input type="text" id="name" name="name" required
+              class="w-full p-2 border border-[#444] rounded-lg bg-[#2B2B30] text-white" />
           </div>
           <div>
             <label for="screenshot" class="block mb-1 text-sm font-medium">Screenshot</label>
-            <input type="file" id="screenshot" name="screenshot" accept="image/*" required class="w-full p-2 border border-[#444] rounded-lg bg-[#2B2B30] text-white" />
+            <input type="file" id="screenshot" name="screenshot" accept="image/*" required
+              class="w-full p-2 border border-[#444] rounded-lg bg-[#2B2B30] text-white" />
           </div>
           <div>
             <label class="inline-flex items-center space-x-2">
@@ -53,7 +59,15 @@
               <span class="text-sm font-medium">Use Freeplay</span>
             </label>
           </div>
-          <button type="submit" class="w-full py-2 bg-[#4DB2E8] hover:bg-[#76CDF9] text-white rounded-xl font-semibold">Upload</button>
+          <button type="submit"
+            class="w-full py-2 bg-[#4DB2E8] hover:bg-[#76CDF9] text-white rounded-xl font-semibold">Upload</button>
+          <p class="text-xs text-gray-400 mt-2">
+            By uploading the slip you are agreeing to the rules listed under the <strong
+              class="text-white">Rules</strong> tab.
+          </p>
+
+
+
         </form>
         <div id="output" class="mt-6 text-sm text-left"></div>
       </div>
@@ -65,13 +79,16 @@
         <h2 class="text-2xl font-bold mb-6">💰 Your Balance</h2>
         <div>
           <label for="balance-name" class="block text-sm font-medium">Enter Your Name</label>
-          <input type="text" id="balance-name" class="w-full p-2 border border-[#444] rounded-lg bg-[#2B2B30] text-white" />
+          <input type="text" id="balance-name"
+            class="w-full p-2 border border-[#444] rounded-lg bg-[#2B2B30] text-white" />
         </div>
         <div id="balance-output" class="mt-6 hidden space-y-4">
           <p class="text-lg font-medium">Balance: <span id="owed-value" class="text-green-400"></span></p>
           <p class="text-lg font-medium">Free Play: <span id="cashback-value" class="text-green-400"></span></p>
         </div>
-        <button id="check-balance" class="mt-4 w-full py-2 bg-[#4DB2E8] hover:bg-[#76CDF9] text-white rounded-xl font-semibold">Check Balance</button>
+        <button id="check-balance"
+          class="mt-4 w-full py-2 bg-[#4DB2E8] hover:bg-[#76CDF9] text-white rounded-xl font-semibold">Check
+          Balance</button>
       </div>
     </div>
 
@@ -81,8 +98,11 @@
         <h2 class="text-2xl font-bold mb-6">📅 This Week's Bets</h2>
         <div class="mb-4">
           <label for="weekly-name-input" class="block mb-1 text-sm font-medium">Enter Your Name</label>
-          <input type="text" id="weekly-name-input" class="w-full p-2 border border-[#444] rounded-lg bg-[#2B2B30] text-white" placeholder="e.g., Mason" />
-          <button onclick="fetchWeeklyBets()" class="mt-2 w-full py-2 bg-[#4DB2E8] hover:bg-[#76CDF9] text-white rounded-xl font-semibold">View Bets</button>
+          <input type="text" id="weekly-name-input"
+            class="w-full p-2 border border-[#444] rounded-lg bg-[#2B2B30] text-white" placeholder="e.g., Mason" />
+          <button onclick="fetchWeeklyBets()"
+            class="mt-2 w-full py-2 bg-[#4DB2E8] hover:bg-[#76CDF9] text-white rounded-xl font-semibold">View
+            Bets</button>
         </div>
         <div id="weekly-bets-output" class="space-y-4 mt-6"></div>
       </div>
@@ -96,9 +116,11 @@
           <li><strong>All bets are final</strong> once placed.</li>
           <li><strong>Odds are locked</strong> at time of submission.</li>
           <li><strong>No payout (wager + profit) may exceed $1,500.</strong></li>
-          <li><strong>Void rules:</strong> If a player does not play, the bet is void unless individual leg odds are visible.</li>
+          <li><strong>Void rules:</strong> If a player does not play, the bet is void unless individual leg odds are
+            visible.</li>
           <li><strong>Live Bets:</strong> Max $100, must be submitted within 90 seconds of screenshot timestamp.</li>
-          <li><strong>Freeplay:</strong> 15% default for losses; or 10% boost if requested pre-event (no boosts on straights).</li>
+          <li><strong>Freeplay:</strong> 15% default for losses; or 10% boost if requested pre-event (no boosts on
+            straights).</li>
           <li><strong>Balances</strong> may take up to 24 hours to update.</li>
           <li><strong>Payouts:</strong> All must be settled by Tuesday before placing new bets.</li>
           <li><strong>Responsible gambling:</strong> Self-exclude or request limits anytime.</li>
