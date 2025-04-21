@@ -29,6 +29,7 @@
       <button onclick="showTab('tab1')" class="w-full text-left px-3 py-2 rounded-lg bg-[#2B2B30] hover:bg-[#4DB2E8]">1. Upload a Bet Slip</button>
       <button onclick="showTab('tab2')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#2B2B30]">2. Check Balance</button>
       <button onclick="showTab('tab3')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#2B2B30]">3. View This Week's Bets</button>
+      <button onclick="showTab('tab4')" class="w-full text-left px-3 py-2 rounded-lg hover:bg-[#2B2B30]">4. Rules</button>
     </nav>
   </aside>
 
@@ -153,6 +154,8 @@
       }
     });
 
+    
+
     async function fetchWeeklyBets() {
       const name = document.getElementById("weekly-name-input").value.trim();
       const container = document.getElementById("weekly-bets-output");
@@ -191,6 +194,29 @@
       }
     }
 
+<!-- 📖 RULES TAB -->
+<div id="tab4" class="tab-content hidden">
+  <div class="bg-[#1C1C1F] p-6 rounded-xl shadow max-w-3xl mx-auto space-y-4 text-sm leading-relaxed text-white">
+    <h2 class="text-2xl font-bold mb-4">📖 MFB Rules</h2>
+    <ul class="space-y-2 list-disc list-inside">
+      <li><strong>All bets are final</strong> once placed.</li>
+      <li><strong>Odds are locked</strong> at time of submission.</li>
+      <li><strong>No payout (wager + profit) may exceed $1,500.</strong></li>
+      <li><strong>Void rules:</strong> If a player does not play, the bet is void unless individual leg odds are visible.</li>
+      <li><strong>Live Bets:</strong> Max $100, must be submitted within 90 seconds of screenshot timestamp.</li>
+      <li><strong>Freeplay:</strong> 15% default for losses; or 10% boost if requested pre-event (no boosts on straights).</li>
+      <li><strong>Balances</strong> may take up to 24 hours to update.</li>
+      <li><strong>Payouts:</strong> All must be settled by Tuesday before placing new bets.</li>
+      <li><strong>Responsible gambling:</strong> Self-exclude or request limits anytime.</li>
+      <li><strong>Community:</strong> Don’t be greedy. Don’t be slick. Respect the book.</li>
+      <li><strong>Rule violations:</strong> I have the right to refuse anything for any reason.</li>
+    </ul>
+  </div>
+</div>
+
+  </main>
+
+  <script>
     showTab('tab1');
   </script>
 </body>
